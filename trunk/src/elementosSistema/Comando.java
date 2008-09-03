@@ -1,7 +1,8 @@
 package elementosSistema;
 
 public class Comando {
-		
+		private EnderecoComando endereco;
+
 		private String Id;
 		private int Ordem;
 		public Comando(){			
@@ -21,6 +22,14 @@ public class Comando {
 		public void setOrdem(int ordem) {
 			Ordem = ordem;
 		}
+		
+		public EnderecoComando getEndereco() {
+			return endereco;
+		}
+		public void setEndereco(EnderecoComando endereco) {
+			this.endereco = endereco;
+		}
+		
 		
 
 }

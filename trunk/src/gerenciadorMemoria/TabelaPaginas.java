@@ -4,10 +4,11 @@ import java.util.Vector;
 
 import elementosSistema.EnderecoComando;
 
-public class UGM {
+public class TabelaPaginas {
+	private Vector<EnderecoComando> endereco;
 	
-	public UGM(){		
+	public TabelaPaginas(){		
 	}
 	
-
+	
 }
