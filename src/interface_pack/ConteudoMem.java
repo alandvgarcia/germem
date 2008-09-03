@@ -1,21 +1,23 @@
 package interface_pack;
+
+
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 /**
- * Classe que representa uma página da memória principal na interface.
- * 
+ * Classe que representa uma pï¿½gina da memï¿½ria principal na interface.
+ * @author
  */
 
 public class ConteudoMem extends JPanel {
 
-	//Conteúdo a ser impresso dentro do painel
+	//Conteï¿½do a ser impresso dentro do painel
 	/**
 	 * @uml.property  name="conteudo"
 	 */
-	private String conteudo; 
+	private String conteudo;
 	/**
 	 * @uml.property  name="x"
 	 */
@@ -32,13 +34,13 @@ public class ConteudoMem extends JPanel {
 	 * @uml.property  name="tamQuad_Y"
 	 */
 	private int tamQuad_Y;
-	
+
 	private static final long serialVersionUID = 0;
-	
+
 
 
 	public ConteudoMem(){
-		
+
 		//Seta o tamanho do painel
 		tamQuad_X = 131;
 		tamQuad_Y = 21;
@@ -46,38 +48,38 @@ public class ConteudoMem extends JPanel {
 		this.setSize(this.tamQuad_X,this.tamQuad_Y);
 		this.setBackground( new Color(255,250,240));
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		
+
 	}
-	
+
 	/**
-	 * Seta o conteúdo a ser desenhado no painel
-	 * @param conteudo - conteúdo a ser impresso dentro do painel
+	 * Seta o conteï¿½do a ser desenhado no painel
+	 * @param conteudo - conteï¿½do a ser impresso dentro do painel
 	 * @param cor - cor de fundo do painel
 	 */
 	public void setConteudo(String conteudo, Color cor){
-		
+
 		this.conteudo = conteudo;
 		this.setBackground(cor);
 	}
-	
+
 	/**
-	 * Método sobrescrito JComponent.paintComponent
+	 * Mï¿½todo sobrescrito JComponent.paintComponent
 	 * Indica como pintar este objeto
-	 * @param g - objeto gráfico usado para desenhar o JPanel
+	 * @param g - objeto grï¿½fico usado para desenhar o JPanel
 	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent( g );
-		
-		
+
+
 		g.setFont(new java.awt.Font("Serif",java.awt.Font.BOLD,15));
 
 		if(conteudo != null){
-			g.drawString(conteudo,this.getWidth()/7,
-								  this.getHeight()/2 + 4);
+		    g.drawString(conteudo,this.getWidth()/7, this.getHeight()/2 + 4);
 		}
-		else g.drawString("-", this.getWidth()/2, this.getHeight()/2 + 4);
-		
-		
+		else
+                    g.drawString("*", this.getWidth()/2, this.getHeight()/2 + 4);
+
+
 	}
 
 	/**
@@ -91,7 +93,7 @@ public class ConteudoMem extends JPanel {
 
 	/**
 	 * Seta a posicao X do Conteido no painel de elementos de sistema.
-	 * @param x  Nova posição.
+	 * @param x  Nova posiï¿½ï¿½o.
 	 * @uml.property  name="x"
 	 */
 	public void setX(int x) {
@@ -109,7 +111,7 @@ public class ConteudoMem extends JPanel {
 
 	/**
 	 * Seta a posicao Y do Conteido no painel de elementos de sistema.
-	 * @param y  Nova posição.
+	 * @param y  Nova posiï¿½ï¿½o.
 	 * @uml.property  name="y"
 	 */
 	public void setY(int y) {
@@ -135,13 +137,13 @@ public class ConteudoMem extends JPanel {
 	}
 
 	/**
-	 * Retorna o conteúdo que está escrito no painel.
-	 * @return  Conteúdo.
+	 * Retorna o conteï¿½do que estï¿½ escrito no painel.
+	 * @return  Conteï¿½do.
 	 * @uml.property  name="conteudo"
 	 */
 	public String getConteudo() {
 		return conteudo;
 	}
-	
+
 
 }
