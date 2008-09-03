@@ -17,6 +17,13 @@ public class Pagina {
 	public void setComandos(){//insere no vetor de comandos as páginas 		
 	}
 	
+	public void setIndex(int in){
+		this.index = in;
+	}
+	
+	public int  getIndex(){
+		return this.index;
+	}
 	
 	public Comando  getComandos(){ //Pega o comando desta página
 		Comando comando =new Comando();
