@@ -1,17 +1,27 @@
 package kernel;
 
+import interface_pack.Interface_User;
+
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import javax.swing.JOptionPane;
-
+import elementosSistema.Comando;
 import elementosSistema.MemVirtual;
-import interface_pack.Interface_User;
 
 public class Kernel {
 	private Interface_User interface_user = new Interface_User();
+	
+	public Kernel(Interface_User interface_in){
+		this.interface_user = interface_in;
+		
+	}
 	public void Simular(){
+		
+		
+
+		
 		System.out.print("\n Entre com o tamanho dos processos. \n");
 		BufferedReader buf = new BufferedReader(new InputStreamReader(System.in));
 		int entrada = 0;
@@ -21,31 +31,12 @@ public class Kernel {
 				//JOptionPane.showMessageDialog(null,"O número de comandos que terá seu programa deve estar entre 0 e 25.");
 				System.out.print("\n ERRO: O valor deve estar entre 0 e 25 ! \n");
 				System.exit(0);
-				
-			}
-			
-			/*
-			memVirtual.ShowListaComando();
-			comandoCorrente = memVirtual.atualizaPonteiro(0);
-	
-			System.out.print("\n ----------------------------------------\n");
-			while (comandoCorrente!=null){
-		    	try{
-		    		Thread.sleep(2000);	
-		    	}
-		    	catch(InterruptedException e){
-		    	}
-		    	finally{
-				    posicaoComando++;
-					System.out.print("\n" + comandoCorrente.getId()+"\n");
-					comandoCorrente = memVirtual.atualizaPonteiro(posicaoComando);
-		    		
-		    	}					
-			}
 
-		}
-		*/
+			}
 			
+			
+			
+
 
 		}
 		catch (IOException e){
@@ -58,5 +49,36 @@ public class Kernel {
 		MemVirtual memVirtual = new MemVirtual( entrada) ;
 		memVirtual.ShowListaComando();
 		
+		
+		//memVirtual.ShowListaComando();
+		//insere nos comandos
+		Comando comandoCorrente= new Comando();
+		int posicaoComando = 0;
+		comandoCorrente = memVirtual.atualizaPonteiro(0);
+
+		System.out.print("\n ----------------------------------------\n");
+		while (comandoCorrente!=null){
+	    	try{
+	    		Thread.sleep(2000);	
+	    	}
+	    	catch(InterruptedException e){
+	    	}
+	    	finally{
+	    		this.EscreverMemoria(posicaoComando);
+			    posicaoComando++;			    
+				comandoCorrente = memVirtual.atualizaPonteiro(posicaoComando);
+	    		
+	    	}					
+		}
+
+	}
+	
+				
+		
+	
+	
+	private void EscreverMemoria(int posicao){
+		
+		this.interface_user.getpanelMemVirtual().setConteudo(posicao, "Comando "    , Color.red);
 	}
 }
