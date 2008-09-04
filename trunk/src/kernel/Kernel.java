@@ -12,14 +12,14 @@ import elementosSistema.MemVirtual;
 
 public class Kernel {
 	private Interface_User interface_user = new Interface_User();
-	
+	MemVirtual memVirtual ;
 	public Kernel(Interface_User interface_in){
 		this.interface_user = interface_in;
 		
 	}
 	public void Simular(){
 		
-		
+
 
 		
 		System.out.print("\n Entre com o tamanho dos processos. \n");
@@ -33,11 +33,6 @@ public class Kernel {
 				System.exit(0);
 
 			}
-			
-			
-			
-
-
 		}
 		catch (IOException e){
 			System.out.print(e.getCause());
@@ -46,12 +41,13 @@ public class Kernel {
 		catch (NumberFormatException n){
 			System.out.print("\n Formato de entrada inv�lido. Deve ser um Integer. \n");
 		}
-		MemVirtual memVirtual = new MemVirtual( entrada) ;
-		memVirtual.ShowListaComando();
+		this.InicializaElementos(entrada);
 		
 		
-		//memVirtual.ShowListaComando();
+		
+		
 		//insere nos comandos
+		//jogar parte de baixo para EscreverImagem
 		Comando comandoCorrente= new Comando();
 		int posicaoComando = 0;
 		comandoCorrente = memVirtual.atualizaPonteiro(0);
@@ -74,7 +70,11 @@ public class Kernel {
 	}
 	
 				
+	private void InicializaElementos(int QuantidadeComandos){
+		this.memVirtual = new MemVirtual( QuantidadeComandos) ;
+		this.memVirtual.ShowListaComando();
 		
+	}
 	
 	
 	private void EscreverMemoria(int posicao){
