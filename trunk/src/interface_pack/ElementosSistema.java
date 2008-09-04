@@ -57,7 +57,7 @@ public class ElementosSistema extends JPanel{
 	 * @param cor Cor do plano de fundo.
 	 */
 	public void setConteudo(int posicao, String conteudo, Color cor){
-
+		System.out.print("\n Posicao:"+String.valueOf(posicao)+"\n");
 		elementoMem.get(posicao).setConteudo(conteudo,cor);
 		repaint();
 	}

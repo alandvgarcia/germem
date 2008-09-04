@@ -15,6 +15,33 @@ import interface_pack.ElementosSistema;
 
 public class Interface_User extends javax.swing.JFrame {
 
+    // Declaração de Variáveis
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea2;
+    private ElementosSistema panelMemRAM;
+    private ElementosSistema panelMemSecu;
+    private ElementosSistema panelMemVirtual;
+    private Relogio panelRelogio;
+    
+	
     /** Creates new form Interface */
     public Interface_User() {
         super("Simulador MemÃ³ria");
@@ -359,43 +386,9 @@ private void corPagina (int num){
 
 
 }
-    /**
-    * @param args the command line arguments
-    */
-	/*
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Interface_User().setVisible(true);
-            }
-        });
-    }*/
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea2;
-    private ElementosSistema panelMemRAM;
-    private ElementosSistema panelMemSecu;
-    private ElementosSistema panelMemVirtual;
-    private Relogio panelRelogio;
-    // End of variables declaration//GEN-END:variables
+public ElementosSistema getpanelMemVirtual(){
+	return  this.panelMemVirtual ;
+}
 
 }
