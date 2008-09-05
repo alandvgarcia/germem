@@ -16,30 +16,27 @@ public class MemVirtual {
 	
 	private Boolean temComando(){
 		if (this.pos< this.tam) return true;
-		else return false;
-			
-		
+		else return false;		
+	}
+	
+	private int qualPagina(int i){
+		return i/3;
 	}
 	
 	
 	public  MemVirtual (int tamanho){
-		int pagina;
+		
 		if (tamanho>ListaComando.capacity()) {
 			System.out.print("Tamanho do processo e maior do que se e capaz de trabalhar. ");
 			System.exit(0);
 		}
 		this.tam = tamanho;
-		for( int i = 0 ; i < tamanho  ; i++ ){
-			pagina = i /3;
-			
+		for( int i = 0 ; i < tamanho  ; i++ ){			
 			ListaComando.addElement(new Comando());
 			ListaComando.get(i).setId("Comando" + Integer.toString(i +1));			
 			ListaComando.get(i).getEndereco().setIdProcedimento(String.valueOf(2));
-			ListaComando.get(i).getEndereco().setIdPagina(String.valueOf(pagina));
-			ListaComando.get(i).getEndereco().setOrdem(String.valueOf(i));
-			
-			
-			
+			ListaComando.get(i).getEndereco().setIdPagina(String.valueOf(this.qualPagina(i)));
+			ListaComando.get(i).getEndereco().setOrdem(String.valueOf(i%3));		
 		}
 		
 	}

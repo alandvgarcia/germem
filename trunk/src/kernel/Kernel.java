@@ -94,7 +94,7 @@ public class Kernel {
 		while (i<memVirtual.getTam()){			
 			
 			comandoImpressao  =  this.memVirtual.pegaComando(i);
-			this.interface_user.getpanelMemVirtual().setConteudo(i, comandoImpressao.getEndereco().getEndereco()   , Color.blue);
+			this.interface_user.getpanelMemVirtual().setConteudo(i, comandoImpressao.getEndereco().getEndereco()   , null);
 			i++;
 			
 		
