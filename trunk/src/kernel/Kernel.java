@@ -1,5 +1,6 @@
 package kernel;
 
+import gerenciadorMemoria.UGM;
 import interface_pack.Interface_User;
 
 import java.awt.Color;
@@ -11,24 +12,29 @@ import elementosSistema.Comando;
 import elementosSistema.MemVirtual;
 
 public class Kernel {
+	private UGM ugm;
 	private Interface_User interface_user = new Interface_User();
-	MemVirtual memVirtual ;
+	private MemVirtual memVirtual ;
+	private Comando comandoCorrente;
+	
 	public Kernel(Interface_User interface_in){
 		this.interface_user = interface_in;
 		
 	}
 	public void Simular(){
-		
+		boolean temSimulacao;
+		/***
+		 * Pega os valores de entrada
+		 * */
 
-
-		
+		this.comandoCorrente= new Comando();
 		System.out.print("\n Entre com o tamanho dos processos. \n");
 		BufferedReader buf = new BufferedReader(new InputStreamReader(System.in));
 		int entrada = 0;
 		try {
 			entrada = Integer.parseInt(buf.readLine());
-			if ((entrada <=0)|| (entrada >24)){					
-				//JOptionPane.showMessageDialog(null,"O número de comandos que terá seu programa deve estar entre 0 e 25.");
+			if ((entrada <=0)|| (entrada >24)){		
+				
 				System.out.print("\n ERRO: O valor deve estar entre 0 e 25 ! \n");
 				System.exit(0);
 
@@ -42,43 +48,61 @@ public class Kernel {
 			System.out.print("\n Formato de entrada invï¿½lido. Deve ser um Integer. \n");
 		}
 		this.InicializaElementos(entrada);
+		/***
+		 * Pega os valores da memoria virtual e vai pintando..
+		 * */
+		temSimulacao = this.existeProximoComando(); 
+		//int posicaoComando = 0;					
+		//comandoCorrente = memVirtual.atualizaPonteiro(0);
 		
 		
-		
-		
-		//insere nos comandos
-		//jogar parte de baixo para EscreverImagem
-		Comando comandoCorrente= new Comando();
-		int posicaoComando = 0;
-		comandoCorrente = memVirtual.atualizaPonteiro(0);
-
 		System.out.print("\n ----------------------------------------\n");
-		while (comandoCorrente!=null){
+		
+		while (temSimulacao){
 	    	try{
 	    		Thread.sleep(2000);	
 	    	}
 	    	catch(InterruptedException e){
 	    	}
 	    	finally{
-	    		this.EscreverMemoria(posicaoComando);
-			    posicaoComando++;			    
-				comandoCorrente = memVirtual.atualizaPonteiro(posicaoComando);
+	    		this.ModuloImpressaoTela();
 	    		
+	    		//this.EscreverMemoria(posicaoComando);
+			    //posicaoComando++;			    
+				//comandoCorrente = memVirtual.atualizaPonteiro(posicaoComando);	    		
 	    	}					
+			temSimulacao = this.existeProximoComando();
 		}
 
 	}
 	
-				
-	private void InicializaElementos(int QuantidadeComandos){
-		this.memVirtual = new MemVirtual( QuantidadeComandos) ;
-		this.memVirtual.ShowListaComando();
+	
+	private boolean existeProximoComando (){
+		boolean retorno = false;
+		retorno = this.ugm.temProximoComando();
+		return retorno;
 		
 	}
 	
+	private void InicializaElementos(int QuantidadeComandos){
+		this.memVirtual = new MemVirtual( QuantidadeComandos) ;
+		this.ugm = new UGM(QuantidadeComandos);
+		this.memVirtual.ShowListaComando();		
+	}
 	
-	private void EscreverMemoria(int posicao){
+	
+	private void ModuloImpressaoTela(){
+		Comando comandoImpressao = new Comando();
+		int i = 0; //perdorrerá as filas de estrutura para reimpressão na tela..
+		do{			
+			i++;
+			comandoImpressao  =  this.memVirtual.pegaComando(i);
+			this.interface_user.getpanelMemVirtual().setConteudo(i, comandoImpressao.getId()   , Color.red);
 		
+		}while ((i<=memVirtual.getTam()));
+		
+	}
+	private void EscreverMemoria(int posicao){		
 		this.interface_user.getpanelMemVirtual().setConteudo(posicao, "Comando "    , Color.red);
 	}
 }

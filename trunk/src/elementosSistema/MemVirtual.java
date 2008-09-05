@@ -36,20 +36,35 @@ public class MemVirtual {
 		
 	}
 	
-	public Comando atualizaPonteiro(int i){
-		Comando retorno = new Comando();
-		if (this.temComando()){
-			retorno = ListaComando.get(i);			
+	public void atualizaPonteiro(int i){
+		//Comando retorno = new Comando();
+		//if (this.temComando()){
+			//retorno = ListaComando.get(i);			
 			this.pos++;
-			return retorno;
-		}
-		else return null;
+			//return retorno;
+		//}
+		//else return null;
 	}
 	
+	public Comando pegaComando (int i){
+		Comando retorno = new Comando();
+		retorno = ListaComando.get(i);
+		return retorno;		
+	}
+	
+	public Vector<Comando> getListaComando(){
+		return this.ListaComando;
+	}
+	
+	public int getTam(){
+		return this.tam;
+	}
+
 	public void ShowListaComando(){
 		for( int i = 0 ; i <   this.ListaComando.size() ; i++ ){
 			System.out.print("\n" + this.ListaComando.get(i).getId()+"\n");			
 		}
 	}	
+	
 
 }

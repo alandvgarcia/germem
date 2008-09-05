@@ -6,8 +6,11 @@ import elementosSistema.Comando;
 import elementosSistema.EnderecoComando;
 
 public class UGM {
-	
+	int numeroComando;
+	int posComandoCorrente; 
 	public UGM(int nComando){
+		this.posComandoCorrente = 0;
+		this.numeroComando = nComando;
 		this.fazPaginacao(nComando);		
 	}
 	
@@ -32,6 +35,12 @@ public class UGM {
 	}
 	
 	private void criarTabelaPagina(){		
+	}
+	
+	public boolean temProximoComando(){		
+		this.posComandoCorrente++;
+		if (this.posComandoCorrente>this.numeroComando) return false;
+		return true;
 	}
 	
 
