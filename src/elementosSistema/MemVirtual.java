@@ -1,6 +1,5 @@
 package elementosSistema;
 
-import java.util.Iterator;
 import java.util.Vector;
 
 
@@ -10,7 +9,7 @@ public class MemVirtual {
 	private Vector<Comando> ListaComando = new Vector(24) ;
 	private int tam;
 	private int pos;
-	private Comando ReadComando(int i){
+	private Comando ReadComando(int i){		
 		return ListaComando.get(i);					
 	}	
 	
@@ -30,8 +29,9 @@ public class MemVirtual {
 		this.tam = tamanho;
 		for( int i = 0 ; i < tamanho  ; i++ ){
 			ListaComando.addElement(new Comando());
-			ListaComando.get(i).setId("Comando" + Integer.toString(i));
-			ListaComando.get(i).setOrdem(i);			
+			ListaComando.get(i).setId("Comando" + Integer.toString(i +1));
+			ListaComando.get(i).setOrdem(i);
+			ListaComando.get(i).setNumProcesso(2);
 		}
 		
 	}
@@ -48,6 +48,7 @@ public class MemVirtual {
 	
 	public Comando pegaComando (int i){
 		Comando retorno = new Comando();
+		System.out.print ("i: " + String.valueOf(i) + "\n");
 		retorno = ListaComando.get(i);
 		return retorno;		
 	}

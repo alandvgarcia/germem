@@ -2,11 +2,20 @@ package elementosSistema;
 
 public class Comando {
 		private EnderecoComando endereco;
-
+	
 		private String Id;
+		private int numProcesso;
+		public int getNumProcesso() {
+			return numProcesso;
+		}
 		private int Ordem;
 		public Comando(){			
 		}
+		
+		public void setNumProcesso(int numProcesso) {
+			this.numProcesso = numProcesso;
+		}
+		
 		public String getId() {
 			return Id;
 		}

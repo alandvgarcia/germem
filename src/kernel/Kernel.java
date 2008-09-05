@@ -15,6 +15,7 @@ public class Kernel {
 	private UGM ugm;
 	private Interface_User interface_user = new Interface_User();
 	private MemVirtual memVirtual ;
+	private Relogio relogio;
 	private Comando comandoCorrente;
 	
 	public Kernel(Interface_User interface_in){
@@ -33,12 +34,13 @@ public class Kernel {
 		int entrada = 0;
 		try {
 			entrada = Integer.parseInt(buf.readLine());
-			if ((entrada <=0)|| (entrada >24)){		
+			if ((entrada <1)|| (entrada >24)){		
 				
 				System.out.print("\n ERRO: O valor deve estar entre 0 e 25 ! \n");
 				System.exit(0);
 
 			}
+			  
 		}
 		catch (IOException e){
 			System.out.print(e.getCause());
@@ -59,18 +61,11 @@ public class Kernel {
 		System.out.print("\n ----------------------------------------\n");
 		
 		while (temSimulacao){
-	    	try{
-	    		Thread.sleep(2000);	
-	    	}
-	    	catch(InterruptedException e){
-	    	}
-	    	finally{
 	    		this.ModuloImpressaoTela();
-	    		
+	    		this.relogio.tick();
 	    		//this.EscreverMemoria(posicaoComando);
 			    //posicaoComando++;			    
 				//comandoCorrente = memVirtual.atualizaPonteiro(posicaoComando);	    		
-	    	}					
 			temSimulacao = this.existeProximoComando();
 		}
 
@@ -87,19 +82,24 @@ public class Kernel {
 	private void InicializaElementos(int QuantidadeComandos){
 		this.memVirtual = new MemVirtual( QuantidadeComandos) ;
 		this.ugm = new UGM(QuantidadeComandos);
-		this.memVirtual.ShowListaComando();		
+		this.memVirtual.ShowListaComando();
+		this.relogio = new Relogio (this.interface_user);
+		
 	}
 	
 	
 	private void ModuloImpressaoTela(){
 		Comando comandoImpressao = new Comando();
 		int i = 0; //perdorrerá as filas de estrutura para reimpressão na tela..
-		do{			
-			i++;
+		while (i<memVirtual.getTam()){			
+			
 			comandoImpressao  =  this.memVirtual.pegaComando(i);
 			this.interface_user.getpanelMemVirtual().setConteudo(i, comandoImpressao.getId()   , Color.red);
+			i++;
+			
 		
-		}while ((i<=memVirtual.getTam()));
+		};
+		
 		
 	}
 	private void EscreverMemoria(int posicao){		
