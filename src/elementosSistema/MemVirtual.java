@@ -5,6 +5,7 @@ import java.util.Vector;
 
 
 
+
 public class MemVirtual {
 	private Vector<Comando> ListaComando = new Vector(24) ;
 	private int tam;
@@ -22,16 +23,23 @@ public class MemVirtual {
 	
 	
 	public  MemVirtual (int tamanho){
+		int pagina;
 		if (tamanho>ListaComando.capacity()) {
 			System.out.print("Tamanho do processo e maior do que se e capaz de trabalhar. ");
 			System.exit(0);
 		}
 		this.tam = tamanho;
 		for( int i = 0 ; i < tamanho  ; i++ ){
+			pagina = i /3;
+			
 			ListaComando.addElement(new Comando());
-			ListaComando.get(i).setId("Comando" + Integer.toString(i +1));
-			ListaComando.get(i).setOrdem(i);
-			ListaComando.get(i).setNumProcesso(2);
+			ListaComando.get(i).setId("Comando" + Integer.toString(i +1));			
+			ListaComando.get(i).getEndereco().setIdProcedimento(String.valueOf(2));
+			ListaComando.get(i).getEndereco().setIdPagina(String.valueOf(pagina));
+			ListaComando.get(i).getEndereco().setOrdem(String.valueOf(i));
+			
+			
+			
 		}
 		
 	}
