@@ -106,7 +106,7 @@ public class Interface_User extends javax.swing.JFrame {
         jLabel1.setText("Tamanho memória virtual:");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel2.setText("Tamanho memória³ria RAM:");
+        jLabel2.setText("Tamanho memória RAM:");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel3.setText("Algoritmo de Substituicao:");
