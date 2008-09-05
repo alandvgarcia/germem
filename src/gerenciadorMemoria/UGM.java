@@ -13,10 +13,10 @@ public class UGM {
 	public UGM(int nComando){
 		this.posComandoCorrente = 0;
 		this.numeroComando = nComando;
-		this.fazPaginacao(nComando);		
+		//this.fazPaginacao(nComando);		
 	}
 	
-	private void fazPaginacao(int ncComando){
+	/**private void fazPaginacao(int ncComando){
 		Comando novoComando = new Comando();
 		for( int i = 0 ; i < this.numeroComando  ; i++ ){
 			ListaComando.addElement(new Comando());
@@ -28,7 +28,7 @@ public class UGM {
 				
 				ListaComando.clear();
 			}
-		}
+		}*/
 	/*
 
 		for( int i = 0 ; i < tamanho  ; i++ ){
@@ -44,7 +44,7 @@ public class UGM {
 
 	  
 	 */	
-	}
+	//}
 	
 	private int whichPagina(int i){
 		return i/3;
