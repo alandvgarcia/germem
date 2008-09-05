@@ -46,7 +46,7 @@ public class ConteudoMem extends JPanel {
 		tamQuad_Y = 21;
 		conteudo = null;
 		this.setSize(this.tamQuad_X,this.tamQuad_Y);
-		this.setBackground( new Color(255,250,240));
+	//	this.setBackground( new Color(255,250,240));
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
 	}
@@ -59,7 +59,8 @@ public class ConteudoMem extends JPanel {
 	public void setConteudo(String conteudo, Color cor){
 
 		this.conteudo = conteudo;
-		this.setBackground(cor);
+		if (cor!=null)
+			this.setBackground(cor);
 	}
 
 	/**

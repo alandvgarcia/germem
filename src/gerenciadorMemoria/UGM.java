@@ -3,9 +3,11 @@ package gerenciadorMemoria;
 import java.util.Vector;
 
 import elementosSistema.Comando;
-import elementosSistema.EnderecoComando;
+import elementosSistema.EnderecoPagina;
 
 public class UGM {
+	private Vector<EnderecoPagina> TabelaMemoria = new Vector(7);
+	private Vector<Comando> ListaComando = new Vector(3) ;
 	int numeroComando;
 	int posComandoCorrente; 
 	public UGM(int nComando){
@@ -15,22 +17,38 @@ public class UGM {
 	}
 	
 	private void fazPaginacao(int ncComando){
-		
-	/*
-		if (tamanho>ListaComando.capacity()) {
-			System.out.print("Tamanho do processo e maior do que se e capaz de trabalhar. ");
-			System.exit(0);
-		}
-		this.tam = tamanho;
-		for( int i = 0 ; i < tamanho  ; i++ ){
+		Comando novoComando = new Comando();
+		for( int i = 0 ; i < this.numeroComando  ; i++ ){
 			ListaComando.addElement(new Comando());
-			ListaComando.get(i).setId("Comando" + Integer.toString(i));
-			ListaComando.get(i).setOrdem(i);			
+			ListaComando.get(i).setId("Comando" + Integer.toString(i +1));			
+			ListaComando.get(i).getEndereco().setIdProcedimento(String.valueOf(2));
+			ListaComando.get(i).getEndereco().setIdPagina(String.valueOf(this.whichPagina(i)));
+			ListaComando.get(i).getEndereco().setOrdem(String.valueOf(i%3));
+			if (ListaComando.size()==3){
+				
+				ListaComando.clear();
+			}
 		}
+	/*
+
+		for( int i = 0 ; i < tamanho  ; i++ ){
+			pagina = i /3;
+			
+			ListaComando.addElement(new Comando());
+			ListaComando.get(i).setId("Comando" + Integer.toString(i +1));			
+			ListaComando.get(i).getEndereco().setIdProcedimento(String.valueOf(2));
+			ListaComando.get(i).getEndereco().setIdPagina(String.valueOf(pagina));
+			ListaComando.get(i).getEndereco().setOrdem(String.valueOf(i%3));		
+		}
+		
+
 	  
 	 */	
 	}
 	
+	private int whichPagina(int i){
+		return i/3;
+	}
 	private void distribuiPaginas(){		
 	}
 	

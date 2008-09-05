@@ -22,7 +22,7 @@ import java.util.Vector;
 
 public class ElementosSistema extends JPanel{
 
-
+	
 	public Vector<ConteudoMem> elementoMem;
         Random r = new Random();
 	private static final long serialVersionUID = 0;
@@ -37,9 +37,12 @@ public class ElementosSistema extends JPanel{
                 this.setLayout(new GridLayout(tamanho,1));
 
                 for(int i = 0; i < tamanho; i++){
+                		
+                
                         elementoMem.add(i, new ConteudoMem());
                         elementoMem.get(i).setX(1);
                         elementoMem.get(i).setY(i*elementoMem.get(i).getTamQuad_Y());
+                        elementoMem.get(i).setBackground(this.trocaCorFundo(i));
                         this.add(elementoMem.get(i));
                 }
 
@@ -91,5 +94,11 @@ public class ElementosSistema extends JPanel{
 		for(int i = 0; i < elementoMem.size(); i++){
 				elementoMem.get(i).repaint();
                 }
+	}
+	
+	private Color trocaCorFundo(int i){
+		if (((i/3)%2) == 0) return new Color(200,200,200);
+		else return new Color(255,255,255);
+		
 	}
 }
