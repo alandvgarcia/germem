@@ -18,7 +18,7 @@ public class Interface_User extends javax.swing.JFrame {
     // Declaração de Variáveis
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel JLabelRelogio;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -40,6 +40,12 @@ public class Interface_User extends javax.swing.JFrame {
     private ElementosSistema panelMemSecu;
     private ElementosSistema panelMemVirtual;
     private Relogio panelRelogio;
+    private javax.swing.JLabel relogio;
+    /*relogio.setBackground(new java.awt.Color(154, 149, 53));
+    relogio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    relogio.setText("0");
+    relogio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    relogio.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);*/
     
 	
     /** Creates new form Interface */
@@ -75,7 +81,7 @@ public class Interface_User extends javax.swing.JFrame {
         panelMemSecu = new ElementosSistema(16);
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
-        jLabel10 = new javax.swing.JLabel();
+        JLabelRelogio = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -226,7 +232,7 @@ public class Interface_User extends javax.swing.JFrame {
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
 
-        jLabel10.setText("Log:");
+        JLabelRelogio.setText("Log:");
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)), "EndereÃ§os:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 153))); // NOI18N
 
@@ -315,7 +321,7 @@ public class Interface_User extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel10)
+                            .addComponent(JLabelRelogio)
                             .addGap(26, 26, 26))
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -357,7 +363,7 @@ public class Interface_User extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel10)
+                        .addComponent(JLabelRelogio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -389,6 +395,10 @@ private void corPagina (int num){
 
 public ElementosSistema getpanelMemVirtual(){
 	return  this.panelMemVirtual ;
+}
+
+public  javax.swing.JLabel getJLabelRelogio(){
+	return this.JLabelRelogio;
 }
 
 }
