@@ -18,42 +18,42 @@ public class Relogio extends JPanel {
 	/**
 	 * @uml.property  name="conteudo"
 	 */
-	private int conteudo;
+	private int conteudo; 
 
 	private static final long serialVersionUID = 0;
-
+	
 
 	/**
-	 *	Construtor da classe.
+	 *	Construtor da classe. 
 	 *
 	 */
 	public Relogio(){
-
+		
 		//Seta o tamanho do painel
-                /**GregorianCalendar calendar = new GregorianCalendar();
-                Date trialTime = new Date();
-                calendar.setTime(trialTime);
+                /**GregorianCalendar calendar = new GregorianCalendar();  
+                Date trialTime = new Date();  
+                calendar.setTime(trialTime);  
                 conteudo = calendar.get(GregorianCalendar.SECOND);**/
                 conteudo = 0;
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
+		
 	}
-
-
+	
+		
 	/**
 	 * M�todo sobrescrito JComponent.paintComponent
 	 * Indica como pintar este objeto
 	 * @param g - objeto gr�fico usado para desenhar o JPanel
 	 */
 	public void paintComponent(Graphics g){
-
+	
 		super.paintComponent( g );
-
+		
 		g.setFont(new java.awt.Font("Serif",java.awt.Font.BOLD,15));
 
 		g.drawString(Integer.toString(conteudo),this.getWidth()/2 - 4,
 								  this.getHeight()/2 + 4);
-
+			
 	}
 
 	/**
@@ -73,6 +73,6 @@ public class Relogio extends JPanel {
 	public String getConteudo() {
 		return Integer.toString(conteudo);
 	}
-
+	
 
 }

@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 /**
  * Classe que representa uma p�gina da mem�ria principal na interface.
- * @author
+ * @author  
  */
 
 public class ConteudoMem extends JPanel {
@@ -17,7 +17,7 @@ public class ConteudoMem extends JPanel {
 	/**
 	 * @uml.property  name="conteudo"
 	 */
-	private String conteudo;
+	private String conteudo; 
 	/**
 	 * @uml.property  name="x"
 	 */
@@ -34,35 +34,34 @@ public class ConteudoMem extends JPanel {
 	 * @uml.property  name="tamQuad_Y"
 	 */
 	private int tamQuad_Y;
-
+	
 	private static final long serialVersionUID = 0;
-
+	
 
 
 	public ConteudoMem(){
-
+		
 		//Seta o tamanho do painel
 		tamQuad_X = 131;
 		tamQuad_Y = 21;
 		conteudo = null;
 		this.setSize(this.tamQuad_X,this.tamQuad_Y);
-	//	this.setBackground( new Color(255,250,240));
+		this.setBackground( new Color(255,250,240));
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
+		
 	}
-
+	
 	/**
 	 * Seta o conte�do a ser desenhado no painel
 	 * @param conteudo - conte�do a ser impresso dentro do painel
 	 * @param cor - cor de fundo do painel
 	 */
 	public void setConteudo(String conteudo, Color cor){
-
+		
 		this.conteudo = conteudo;
-		if (cor!=null)
-			this.setBackground(cor);
+		this.setBackground(cor);
 	}
-
+	
 	/**
 	 * M�todo sobrescrito JComponent.paintComponent
 	 * Indica como pintar este objeto
@@ -70,17 +69,17 @@ public class ConteudoMem extends JPanel {
 	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent( g );
-
-
+		
+		
 		g.setFont(new java.awt.Font("Serif",java.awt.Font.BOLD,15));
 
 		if(conteudo != null){
 		    g.drawString(conteudo,this.getWidth()/7, this.getHeight()/2 + 4);
 		}
-		else
+		else 
                     g.drawString("*", this.getWidth()/2, this.getHeight()/2 + 4);
-
-
+		
+		
 	}
 
 	/**
@@ -145,6 +144,6 @@ public class ConteudoMem extends JPanel {
 	public String getConteudo() {
 		return conteudo;
 	}
-
+	
 
 }
