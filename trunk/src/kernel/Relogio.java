@@ -30,7 +30,7 @@ public class Relogio{
 		finally
 		{
 			ciclos++;
-			//interfaceUser.getRelogio().setText(String.valueOf(ciclos));
+			interfaceUser.getJLabelRelogio().setText(String.valueOf(ciclos));
 		}
 	}
 	
