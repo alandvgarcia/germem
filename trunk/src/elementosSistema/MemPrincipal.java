@@ -21,13 +21,26 @@ public class MemPrincipal {
 	
 
 	//insere , ou remove, de uma lista de vazias
-	public void UpdateListaVazias(int posicao, String Acao ){		
+	
+	
+	private void UpdateListaVazias(String idPagina){
+		if (this.isPaginaVazia(idPagina))
+			this.ListaVazias.add(Integer.parseInt(idPagina));
+
 	}
 	//insere , ou remove, de uma lista de pï¿½ginas 
-	public void UpdateVectorPaginas(int index, String Acao){		
+	public void UpdateVectorPaginas(int index){		
 	}
 	
 	//inicializa com um vetor de pï¿½ginas
+	
+	private boolean isPaginaVazia(String idPagina){
+		for (int i=0; i<3; i++){
+				if (!this.ListaPaginas.get(Integer.parseInt(idPagina)).getListaComando().get(i).getJaLido())
+					return false;
+		}		
+		return true; 
+	}
 	
 	
 	
@@ -55,24 +68,17 @@ public class MemPrincipal {
 		
 	}
 	
-	private void removeListaPagina(int index){
-	}
-	/*
-	private String lookUpComando( int pagina ,int ordem){
-		String retorno;
-		
-		retorno = this.getListaPaginas().get(pagina).getComandos().getEndereco().getOrdem()
-		
-	}*/
 	
-	//procura uma pï¿½gina na memï¿½ria virtual
-	private void lookUpPagina(int index){
-		
-	}
 	public String ProcutaConteudoComando(String numPagina, String Ordem){
 		String Retorno;
+		this.ListaPaginas.get(Integer.parseInt(numPagina)).getListaComando().get(Integer.parseInt(Ordem)).setJaLido(true);
+		
 		Retorno = this.ListaPaginas.get(Integer.parseInt(numPagina)).getListaComando().
 		get(Integer.parseInt(Ordem)).getId();
+		//se ordem for igual a dois, quer dizer que
+		//é o último comando. Portanto tem que indicar que aquela página está vazia
+		this.UpdateListaVazias(numPagina);
+		
 		
 		return Retorno;
 		

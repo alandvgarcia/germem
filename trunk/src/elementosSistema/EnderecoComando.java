@@ -6,7 +6,8 @@ public class EnderecoComando {
 	String idProcedimento;
 	String idPagina;
 	String ordem;
-	
+
+
 	public String getIdProcedimento() {
 		return idProcedimento;
 	}
@@ -33,7 +34,8 @@ public class EnderecoComando {
 		retorno = this.getIdProcedimento()+this.getIdPagina()+this.getOrdem();
 		return retorno;
 	}
-	public EnderecoComando() {				
+	public EnderecoComando() {
+		
 	}
 	
 	
