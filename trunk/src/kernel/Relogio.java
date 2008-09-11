@@ -17,13 +17,13 @@ public class Relogio{
 	}
 	
 	/**
-	 * Conta um ciclo de execução
+	 * Conta um ciclo de execuï¿½ï¿½o
 	 */
 	public void tick()
 	{
 		
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			
 		}
@@ -35,7 +35,7 @@ public class Relogio{
 	}
 	
 	/**
-	 * Retorna os ciclos contados pelo Relógio
+	 * Retorna os ciclos contados pelo Relï¿½gio
 	 */
 	public String toString()
 	{
