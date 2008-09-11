@@ -3,6 +3,7 @@ package kernel;
 import elementosSistema.Comando;
 import elementosSistema.EnderecoPagina;
 import elementosSistema.MemPrincipal;
+import elementosSistema.MemSecundaria;
 import elementosSistema.MemVirtual;
 import elementosSistema.Pagina;
 import gerenciadorMemoria.TabelaPaginas;
@@ -23,6 +24,7 @@ public class Kernel_ {
 	private Interface_User interface_user = new Interface_User();
 	private MemVirtual memVirtual ;
 	private MemPrincipal memPrincipal;
+	private MemSecundaria memSecundaria;
 	private Relogio relogio;
 	private Comando comandoCorrente;
 	private String EstadoSimulacao  ;
@@ -81,7 +83,7 @@ public class Kernel_ {
 	}
 	
 	private void requisitaInicializacaoPaginacao(){
-		this.ugm.fazPaginacao();
+		this.ugm.fazPaginacao2();
 		this.AnalisaSimuladorEstado();
 	}
 	
@@ -91,9 +93,10 @@ public class Kernel_ {
 	
 	private void InicializaElementos(int QuantidadeComandos){
 		this.memPrincipal  = new MemPrincipal();
+		this.memSecundaria = new MemSecundaria();
 		this.memVirtual = new MemVirtual( QuantidadeComandos) ;
 		this.processador = new Processador(this.memVirtual);
-		this.ugm = new UGM(this.memPrincipal,QuantidadeComandos);
+		this.ugm = new UGM(this.memPrincipal,this.memSecundaria,QuantidadeComandos);
 		this.EstadoSimulacao= "INICIALIZACAO";
 		//this.memVirtual.ShowListaComando();
 		this.relogio = new Relogio (this.interface_user);
@@ -139,6 +142,7 @@ public class Kernel_ {
 	 */
 	private void ModuloImpressaoTela(){
 		this.ImpressaoMemVirtual();
+		this.ImpressaoMemSecundaria();
 		this.ImpressaoMemFisica();
 		this.ImpressaoTabPagina();
 		this.ImpressaoComandoCorrente();
@@ -160,6 +164,39 @@ public class Kernel_ {
 			this.interface_user.getJTextArea().append("    " + enderecoPagina.get(i).getEnderecoFisico()+"  ");
 			this.interface_user.getJTextArea().append("      " + enderecoPagina.get(i).getBitPresenca()+" | \n");
 		}		
+	}
+	
+	private void ImpressaoMemSecundaria(){
+		Vector<Pagina> ListaPaginas = new Vector(5);
+		Vector<Comando> ListaComando = new Vector(3) ;
+		String marcaVazia;
+		Comando comandoImpressao = new Comando();
+		Pagina pagina;
+		int j = 0;//indicarï¿½ em que colocaï¿½ï¿½o no visual da memï¿½ria imprimirï¿½
+		int i = 0;//indicarï¿½ a ordem da pï¿½gina (primeiro, segundo) da memï¿½ria principal
+		int c =0 ; //iterador que acompanharï¿½ o comando dentro da pï¿½gina
+		
+		ListaPaginas = this.memSecundaria.getListaPaginas();
+		while (i<ListaPaginas.size()){
+			pagina = ListaPaginas.get(i);
+			ListaComando  = pagina.getListaComando();
+			while (c<ListaComando.size()){
+				
+				comandoImpressao = ListaComando.get(c);
+				//Imprime se o lugar na memória está setada como vazia ou não
+				if (comandoImpressao.getJaLido()) marcaVazia = "-V-";
+					else marcaVazia = "-o-";
+				this.interface_user.getpanelMemSecundaria().setConteudo(j, comandoImpressao.getId()+marcaVazia, null);
+				comandoImpressao = null;
+				c++;
+				j++;
+			}
+			ListaComando = null;
+			pagina = null;
+			c=0;
+			i++;
+		}
+		
 	}
 	
 	private void ImpressaoMemFisica(){
