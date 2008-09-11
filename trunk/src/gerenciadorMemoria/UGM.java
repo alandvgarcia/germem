@@ -3,6 +3,8 @@ package gerenciadorMemoria;
 import java.util.Random;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 import elementosSistema.Comando;
 import elementosSistema.EnderecoPagina;
 import elementosSistema.MemPrincipal;
@@ -16,16 +18,19 @@ public class UGM {
 	private MemPrincipal memPrincipal;
 	private MemSecundaria memSecundaria;
 	private String EstadoUGM ;
+	private int teste =0;
 	private final int primeiroComando = 0;
 	private final int vazio = -1;
 	private int pComandPagin = vazio;	
+	private int ordem_ucomandoPaginado;
 	private enum Memoria {PRINCIPAL, SECUNDARIA}; 
 	int numeroComando;
 	int posComandoCorrente; 
-	public UGM(MemPrincipal memPrincipal ,int nComando){
+	public UGM(MemPrincipal memPrincipal ,MemSecundaria memSecundaria,int nComando){
 		this.posComandoCorrente = 0;
 		this.numeroComando = nComando;
 		this.memPrincipal = memPrincipal;
+		this.memSecundaria = memSecundaria;
 		this.EstadoUGM = "PAGINACAO";
 		
 		if (nComando>0){
@@ -45,17 +50,7 @@ public class UGM {
 		return tabelaPaginas;
 	}	
 	
-	private int ondeTemVazia(){
-		Random svcRand = new Random() ;
-		int r;
-		if (this.memPrincipal.ListaVazias.size()==0)//
-			r = -1;
-		else
-		    r = svcRand.nextInt(this.memPrincipal.ListaVazias.size());
-		System.out.print("\n R:"+r);
-		
-		return this.memPrincipal.getListaVazias().get(r);
-	}
+
 	
 	private void CompletaNulosPagina(Vector<Comando> ListaComando){
 		if (ListaComando.size()==1){
@@ -91,6 +86,7 @@ public class UGM {
 			ListCommand.get(i%3).getEndereco().setOrdem(String.valueOf(i%3));
 
 		}		
+		
 		pagina = new Pagina(this.whichPagina(this.pComandPagin+i-1));
 		this.CompletaNulosPagina(ListCommand);
 		pagina.setListaComando(ListCommand);	
@@ -100,12 +96,110 @@ public class UGM {
 		this.pComandPagin += i; 
 		pagina = null;
 		ListCommand.clear();
-		this.analisaEstadoUGM();
+		this.analisaEstadoUGM();		
+	}
+	
+	
+	public void fazPaginacao2(){
+		Vector<Comando> ListCommand  = new Vector(3);
+		Pagina pagina;
+		int paginaVazia;
+		int i ;
+		for ( i =0; 
+		((this.pComandPagin+ i)<(this.numeroComando))&& (ListCommand.size()!=3); i++){
+			ListCommand.addElement(new Comando());
+			ListCommand.get(i%3).setId("Comando" + Integer.toString(this.pComandPagin + i + 1));
+			ListCommand.get(i%3).getEndereco().setIdProcedimento(String.valueOf(2));
+			ListCommand.get(i%3).getEndereco().setIdPagina(String.valueOf(this.whichPagina(this.pComandPagin + i)));
+			ListCommand.get(i%3).getEndereco().setOrdem(String.valueOf(i%3));
+
+		}		
+		pagina = new Pagina(this.whichPagina(this.pComandPagin+i-1));
+		this.CompletaNulosPagina(ListCommand);
+		pagina.setListaComando(ListCommand);
+		this.pComandPagin += i;
+		this.insereMemoria(pagina);
+		 
+		pagina = null;
+		ListCommand.clear();
+		this.analisaEstadoUGM();		
+	}
+	
+	
+	private void insereMemoria(Pagina pagina){
+		Memoria tipo = this.qualMemoria();
+		int local  = this.pegaEspacoVazio(tipo);
+		if (tipo==Memoria.PRINCIPAL){
+			this.insereRAM(local, pagina);
+		}
+		else 
+			if (tipo==Memoria.SECUNDARIA){
+				this.insereSECUNDARIA(local, pagina);
+			}
+		
 		
 	}
 	
+	private void insereRAM(int Local, Pagina pagina){
+		this.memPrincipal.insereListaPagina(Local,pagina);
+		this.tabelaPaginas.insereTabelaPagina(whichPagina(this.pComandPagin -1), Local , true);
+		
+	}
+	
+	private void insereSECUNDARIA(int Local, Pagina pagina){
+		this.memSecundaria.insereListaPagina(Local,pagina);
+		this.tabelaPaginas.insereTabelaPagina(whichPagina(this.pComandPagin -1), Local , false);		
+	}
+	
+	private int pegaEspacoVazio(Memoria tipo){
+		Random svcRand = new Random() ;
+		int r;
+		switch (tipo){
+			case PRINCIPAL:
+				r = svcRand.nextInt(this.memPrincipal.ListaVazias.size());		
+				return this.memPrincipal.getListaVazias().get(r);
+			case SECUNDARIA:
+				r = svcRand.nextInt(this.memSecundaria.ListaVazias.size());		
+				return this.memSecundaria.getListaVazias().get(r);
+			default: return -1;
+
+		}
+	}	
+	
+	
+	private int ondeTemVazia(){
+		Random svcRand = new Random() ;
+		int r;
+		if (this.memPrincipal.ListaVazias.size()==0)//
+			r = -1;
+		else
+		    r = svcRand.nextInt(this.memPrincipal.ListaVazias.size());
+		System.out.print("\n R:"+r);
+		
+		return this.memPrincipal.getListaVazias().get(r);
+	}	
 	private Memoria qualMemoria(){
-		return Memoria.PRINCIPAL;
+		if (!isMemPrincipalCheia())
+			return Memoria.PRINCIPAL;
+		else
+			if (!isMemSecundariaCheia()){
+				return Memoria.SECUNDARIA;
+			}
+			return null;
+				
+	}
+	
+	private boolean isMemPrincipalCheia(){
+		if (this.memPrincipal.ListaVazias.size()>0)
+			return false;
+		else return true;
+	}
+	
+	private boolean isMemSecundariaCheia(){
+		if (this.memSecundaria.ListaVazias.size()>0){
+			return false;
+		}
+		else return true;
 	}
 	private boolean isFimPaginacao(){		 
 		return (this.pComandPagin== this.numeroComando)? true:false;
@@ -135,11 +229,15 @@ public class UGM {
 	
 	
 	public String pegaRequisicaoComando(String EnderecoVirtual){
+		this.teste++;
 		String numPagina;
 		String Ordem;
 		EnderecoPagina enderecoPagina;
 		String Comando;
 		enderecoPagina =this.tabelaPaginas.ProcuraTabelaPagina(EnderecoVirtual);
+		if (this.teste==7){
+			System.out.print("");
+		}
 		numPagina =enderecoPagina.getEnderecoFisico();
 		Ordem = String.valueOf(EnderecoVirtual.charAt(2));
 		Comando = this.memPrincipal.ProcutaConteudoComando(numPagina, Ordem);

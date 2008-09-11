@@ -7,34 +7,19 @@ import javax.swing.JPanel;
 import java.util.GregorianCalendar;
 import java.util.Date;
 
-/**
- * Classe que manipula, atualiza e repinta o panel de contagem de tempo na interface.
- * @author  Andr� Gon�alves
- */
 
 public class Relogio extends JPanel {
 
 	//Conte�do a ser impresso dentro do painel
-	/**
-	 * @uml.property  name="conteudo"
-	 */
 	private int conteudo; 
 
 	private static final long serialVersionUID = 0;
 	
 
-	/**
-	 *	Construtor da classe. 
-	 *
-	 */
 	public Relogio(){
 		
 		//Seta o tamanho do painel
-                /**GregorianCalendar calendar = new GregorianCalendar();  
-                Date trialTime = new Date();  
-                calendar.setTime(trialTime);  
-                conteudo = calendar.get(GregorianCalendar.SECOND);**/
-                conteudo = 0;
+
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 	}

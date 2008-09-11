@@ -387,6 +387,9 @@ private void corPagina (int num){
     /**
     * @param args the command line arguments
     */
+public ElementosSistema getpanelMemSecundaria(){
+	return this.panelMemSecu;
+}
 public ElementosSistema getpanelMemVirtual(){
 	return  this.panelMemVirtual;
 }
