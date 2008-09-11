@@ -7,28 +7,29 @@ import java.util.Vector;
 
 
 public class MemPrincipal {
-	private Vector<Pagina> ListaPaginas = new Vector(3);
-	private List<Integer> ListaVazias ;
+	private Vector<Pagina> ListaPaginas = new Vector(2);
+
+	public Vector<Integer> ListaVazias  = new Vector(2);
+
+	public MemPrincipal(){		
+		this.ListaVazias.add(0);
+		this.ListaVazias.add(1);
+		this.ListaPaginas.add(Pagina.paginaNula());
+		this.ListaPaginas.add(Pagina.paginaNula());
+
+	}
 	
-	
-	
+
 	//insere , ou remove, de uma lista de vazias
 	public void UpdateListaVazias(int posicao, String Acao ){		
 	}
-	//insere , ou remove, de uma lista de páginas 
+	//insere , ou remove, de uma lista de pï¿½ginas 
 	public void UpdateVectorPaginas(int index, String Acao){		
 	}
 	
-	//inicializa com um vetor de páginas
-	public MemPrincipal (Vector Paginas){
-		ListaVazias.add(0);
-		ListaVazias.add(1);
-		ListaVazias.add(2);
-		ListaVazias.add(3);
-		ListaVazias.add(4);
-		
-		
-	}
+	//inicializa com um vetor de pï¿½ginas
+	
+	
 	
 	private void insereListaVazia (int index){
 	}
@@ -36,14 +37,53 @@ public class MemPrincipal {
 	private void removeListaVazia (int index){
 	}
 	
-	private void insereVectorPagina(int index){		
+	public void insereListaPagina( int whichPag,Pagina pagina){
+		
+		Pagina novaPagina ;
+		novaPagina = (Pagina)pagina.clone();
+		if (this.ListaPaginas.size()<=this.ListaPaginas.capacity()){
+			this.ListaPaginas.remove(whichPag);
+			this.ListaPaginas.add(whichPag,pagina);			
+			this.ListaVazias.removeElement(whichPag);			
+		}
+			//add(0,novaPagina);
+		else {
+			System.out.print("ERRO: memPrincipal-insereListaPagina - Tentando inserir pï¿½gina onde nï¿½o hï¿½ espaï¿½o ");
+			System.exit(0);
+		}
+		
+		
 	}
 	
-	private void removeVectorPagina(int index){
+	private void removeListaPagina(int index){
+	}
+	/*
+	private String lookUpComando( int pagina ,int ordem){
+		String retorno;
+		
+		retorno = this.getListaPaginas().get(pagina).getComandos().getEndereco().getOrdem()
+		
+	}*/
+	
+	//procura uma pï¿½gina na memï¿½ria virtual
+	private void lookUpPagina(int index){
+		
+	}
+	public String ProcutaConteudoComando(String numPagina, String Ordem){
+		String Retorno;
+		Retorno = this.ListaPaginas.get(Integer.parseInt(numPagina)).getListaComando().
+		get(Integer.parseInt(Ordem)).getId();
+		
+		return Retorno;
+		
 	}
 	
-	//procura uma página na memória virtual
-	private void lookUpPagina(int index){		
+	public Vector<Pagina> getListaPaginas() {
+		return ListaPaginas;
 	}
-
+	
+	public List<Integer> getListaVazias() {
+		return ListaVazias;
+	}	
+	
 }

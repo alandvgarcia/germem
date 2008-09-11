@@ -15,7 +15,7 @@ public class Interface_User extends javax.swing.JFrame {
 
     /** Creates new form Interface */
     public Interface_User() {
-        super("Simulador Memória");
+        super("Simulador Memï¿½ria");
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -62,8 +62,8 @@ public class Interface_User extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)), "Memória Física", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 153))); // NOI18N
-        jPanel1.setName("Gerenciador Memória"); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)), "Memï¿½ria Fï¿½sica", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 153))); // NOI18N
+        jPanel1.setName("Gerenciador Memï¿½ria"); // NOI18N
 
         javax.swing.GroupLayout panelMemRAMLayout = new javax.swing.GroupLayout(panelMemRAM);
         panelMemRAM.setLayout(panelMemRAMLayout);
@@ -103,10 +103,10 @@ public class Interface_User extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)), "Configuracoes do Gerenciador", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 153))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel1.setText("Tamanho memória virtual:");
+        jLabel1.setText("Tamanho memï¿½ria virtual:");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel2.setText("Tamanho memória RAM:");
+        jLabel2.setText("Tamanho memï¿½ria RAM:");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel3.setText("Algoritmo de Substituicao:");
@@ -155,7 +155,7 @@ public class Interface_User extends javax.swing.JFrame {
                 .addContainerGap(62, Short.MAX_VALUE))
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)), "Memória Secundária", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 153))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)), "Memï¿½ria Secundï¿½ria", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 153))); // NOI18N
 
         javax.swing.GroupLayout panelMemSecuLayout = new javax.swing.GroupLayout(panelMemSecu);
         panelMemSecu.setLayout(panelMemSecuLayout);
@@ -235,7 +235,7 @@ public class Interface_User extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)), "Memória Virtual", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 153))); // NOI18N
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)), "Memï¿½ria Virtual", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 153))); // NOI18N
 
         javax.swing.GroupLayout panelMemVirtualLayout = new javax.swing.GroupLayout(panelMemVirtual);
         panelMemVirtual.setLayout(panelMemVirtualLayout);
@@ -265,7 +265,7 @@ public class Interface_User extends javax.swing.JFrame {
         );
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel7.setText("Relógio:");
+        jLabel7.setText("Relï¿½gio:");
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel13.setText("Comando carregado:");
@@ -389,6 +389,18 @@ private void corPagina (int num){
     */
 public ElementosSistema getpanelMemVirtual(){
 	return  this.panelMemVirtual;
+}
+
+public ElementosSistema getpanelMemRAM(){
+	return  this.panelMemRAM;
+}
+
+public javax.swing.JTextArea  getJTextArea(){
+	return this.jTextArea2;
+}
+
+public javax.swing.JTextField getJTFComando(){
+	return this.jTextField1;
 }
 public  javax.swing.JLabel getJLabelRelogio(){
 	return this.JLabelRelogio;

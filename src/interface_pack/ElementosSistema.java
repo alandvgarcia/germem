@@ -40,6 +40,7 @@ public class ElementosSistema extends JPanel{
                         elementoMem.add(i, new ConteudoMem());
                         elementoMem.get(i).setX(1);
                         elementoMem.get(i).setY(i*elementoMem.get(i).getTamQuad_Y());
+                        elementoMem.get(i).setBackground(trocaCorFundo(i));
                         this.add(elementoMem.get(i));
                 }
                 
@@ -57,7 +58,6 @@ public class ElementosSistema extends JPanel{
 	 * @param cor Cor do plano de fundo.
 	 */
 	public void setConteudo(int posicao, String conteudo, Color cor){
-		
 		elementoMem.get(posicao).setConteudo(conteudo,cor);
 		repaint();		
 	}
@@ -84,6 +84,16 @@ public class ElementosSistema extends JPanel{
 	/**
 	 * Indica como pintar este painel
 	*/
+	
+
+	private Color trocaCorFundo(int i){
+		if (((i/3)%2) == 0) return new Color(200,200,200);
+		else return new Color(255,255,255);
+	}
+ 
+
+	
+	
 	public void paintComponent(Graphics g){
 		
 		super.paintComponent( g );
