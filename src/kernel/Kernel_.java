@@ -165,6 +165,7 @@ public class Kernel_ {
 	private void ImpressaoMemFisica(){
 		Vector<Pagina> ListaPaginas = new Vector(2);
 		Vector<Comando> ListaComando = new Vector(3) ;
+		String marcaVazia;
 		Comando comandoImpressao = new Comando();
 		Pagina pagina;
 		int j = 0;//indicarï¿½ em que colocaï¿½ï¿½o no visual da memï¿½ria imprimirï¿½
@@ -175,11 +176,13 @@ public class Kernel_ {
 		while (i<ListaPaginas.size()){
 			pagina = ListaPaginas.get(i);
 			ListaComando  = pagina.getListaComando();
-			
 			while (c<ListaComando.size()){
+				
 				comandoImpressao = ListaComando.get(c);
-				//this.interface_user.getpanelMemVirtual().setConteudo(i, comandoImpressao.getEndereco().getEndereco()   , null);
-				this.interface_user.getpanelMemRAM().setConteudo(j, comandoImpressao.getId(), null);
+				//Imprime se o lugar na memória está setada como vazia ou não
+				if (comandoImpressao.getJaLido()) marcaVazia = "-V-";
+					else marcaVazia = "-o-";
+				this.interface_user.getpanelMemRAM().setConteudo(j, comandoImpressao.getId()+marcaVazia, null);
 				comandoImpressao = null;
 				c++;
 				j++;

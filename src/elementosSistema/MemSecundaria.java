@@ -1,31 +1,53 @@
 package elementosSistema;
 
+
 import java.util.List;
 import java.util.Vector;
 
+
+
 public class MemSecundaria {
-	private Vector<Pagina> ListaPaginas = new Vector(3);
-	private List<Integer> ListaVazias ;
-	public enum AcaoLista { INSERT,REMOVE};//testar
+	private Vector<Pagina> ListaPaginas = new Vector(5);
+
+	public Vector<Integer> ListaVazias  = new Vector(5);
+
+	public MemSecundaria(){		
+		this.ListaVazias.add(0);
+		this.ListaVazias.add(1);
+		this.ListaVazias.add(2);
+		this.ListaVazias.add(3);
+		this.ListaVazias.add(4);
+		this.ListaPaginas.add(Pagina.paginaNula());
+		this.ListaPaginas.add(Pagina.paginaNula());
+		this.ListaPaginas.add(Pagina.paginaNula());
+		this.ListaPaginas.add(Pagina.paginaNula());
+		this.ListaPaginas.add(Pagina.paginaNula());
+	}
 	
-	
+
 	//insere , ou remove, de uma lista de vazias
-	public void UpdateListaVazias(int posicao, AcaoLista acao){		
+	
+	
+	private void UpdateListaVazias(String idPagina){
+		if (this.isPaginaVazia(idPagina))
+			this.ListaVazias.add(Integer.parseInt(idPagina));
+
 	}
-	//insere , ou remove, de uma lista de páginas 
-	public void UpdateVectorPaginas(int index, AcaoLista acao){		
+	//insere , ou remove, de uma lista de pï¿½ginas 
+	public void UpdateVectorPaginas(int index){		
 	}
 	
-	//inicializa com um vetor de páginas
-	public MemSecundaria (Vector Paginas){
-		ListaVazias.add(0);
-		ListaVazias.add(1);
-		ListaVazias.add(2);
-		ListaVazias.add(3);
-		ListaVazias.add(4);
-		
-		
+	//inicializa com um vetor de pï¿½ginas
+	
+	private boolean isPaginaVazia(String idPagina){
+		for (int i=0; i<3; i++){
+				if (!this.ListaPaginas.get(Integer.parseInt(idPagina)).getListaComando().get(i).getJaLido())
+					return false;
+		}		
+		return true; 
 	}
+	
+	
 	
 	private void insereListaVazia (int index){
 	}
@@ -33,46 +55,46 @@ public class MemSecundaria {
 	private void removeListaVazia (int index){
 	}
 	
-	private void insereVectorPagina(int index){		
-	}
-	
-	private void removeVectorPagina(int index){
-	}
-	
-	//procura uma página na memória virtual
-	private void lookUpPagina(int index){		
-	}
-	
-	 
-	
-	
-
-
-	
-	
-	//
-/*
- 	private Vector<Pagina> ListaPaginas = new Vector(3);
-	private List<Integer> ListaVazias ;
-	private enum AcaoLista { INSERT,REMOVE};
-	
-	private void UpdateListaVazias(int posicao, AcaoLista acao){		
-	}
-	
-	public void InserirListaPagina (Pagina pagina){		
-	}
-	
-	public void RemoverListaPagina (int index){ //remover a página que tem o índex referido		
+	public void insereListaPagina( int whichPag,Pagina pagina){
+		
+		Pagina novaPagina ;
+		novaPagina = (Pagina)pagina.clone();
+		if (this.ListaPaginas.size()<=this.ListaPaginas.capacity()){
+			this.ListaPaginas.remove(whichPag);
+			this.ListaPaginas.add(whichPag,pagina);			
+			this.ListaVazias.removeElement(whichPag);			
+		}
+			//add(0,novaPagina);
+		else {
+			System.out.print("ERRO: memPrincipal-insereListaPagina - Tentando inserir pï¿½gina onde nï¿½o hï¿½ espaï¿½o ");
+			System.exit(0);
+		}
+		
+		
 	}
 	
 	
-	public MemPrincipal (Vector Paginas){		
+	public String ProcutaConteudoComando(String numPagina, String Ordem){
+		String Retorno;
+		this.ListaPaginas.get(Integer.parseInt(numPagina)).getListaComando().get(Integer.parseInt(Ordem)).setJaLido(true);
+		
+		Retorno = this.ListaPaginas.get(Integer.parseInt(numPagina)).getListaComando().
+		get(Integer.parseInt(Ordem)).getId();
+		//se ordem for igual a dois, quer dizer que
+		//é o último comando. Portanto tem que indicar que aquela página está vazia
+		this.UpdateListaVazias(numPagina);
+		
+		
+		return Retorno;
+		
 	}
-
-  
- * */	
 	
+	public Vector<Pagina> getListaPaginas() {
+		return ListaPaginas;
+	}
 	
+	public List<Integer> getListaVazias() {
+		return ListaVazias;
+	}	
 	
-
 }

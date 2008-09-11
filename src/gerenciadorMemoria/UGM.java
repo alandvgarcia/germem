@@ -1,12 +1,12 @@
 package gerenciadorMemoria;
 
-import java.util.List;
 import java.util.Random;
 import java.util.Vector;
 
 import elementosSistema.Comando;
 import elementosSistema.EnderecoPagina;
 import elementosSistema.MemPrincipal;
+import elementosSistema.MemSecundaria;
 import elementosSistema.Pagina;
 
 public class UGM {
@@ -14,10 +14,12 @@ public class UGM {
 	private Vector<Comando> ListaComando = new Vector(3) ;
 	private TabelaPaginas  tabelaPaginas= new TabelaPaginas();
 	private MemPrincipal memPrincipal;
+	private MemSecundaria memSecundaria;
 	private String EstadoUGM ;
 	private final int primeiroComando = 0;
 	private final int vazio = -1;
 	private int pComandPagin = vazio;	
+	private enum Memoria {PRINCIPAL, SECUNDARIA}; 
 	int numeroComando;
 	int posComandoCorrente; 
 	public UGM(MemPrincipal memPrincipal ,int nComando){
@@ -102,6 +104,9 @@ public class UGM {
 		
 	}
 	
+	private Memoria qualMemoria(){
+		return Memoria.PRINCIPAL;
+	}
 	private boolean isFimPaginacao(){		 
 		return (this.pComandPagin== this.numeroComando)? true:false;
 		
